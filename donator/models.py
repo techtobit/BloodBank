@@ -10,3 +10,6 @@ class Donator(models.Model):
 	# uninion = 
 	total_donated =models.IntegerField(blank=False)
 	phone_number =models.IntegerField(blank=False, unique=True)
+
+	def __str__(self):
+		return f'{self.full_name}-{self.blood_group}'
