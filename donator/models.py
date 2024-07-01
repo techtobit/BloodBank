@@ -9,4 +9,4 @@ class Donator(models.Model):
 	# state = 
 	# uninion = 
 	total_donated =models.IntegerField(blank=False)
-	phone_number =models.IntegerField(blank=False)
+	phone_number =models.IntegerField(blank=False, unique=True)
