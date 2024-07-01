@@ -7,10 +7,10 @@ def DonatorRegistationView(request):
 	if request.method == 'POST':
 		form = DonatorRegistationForm(request.POST)
 		if form.is_valid():
-			return HttpResponseRedirect('/donatorResgistation/')
+			return HttpResponseRedirect('')
 	else:
 		form = form = DonatorRegistationForm()
-	return render(request, )
+	return render(request, 'donatorResgistation.html', {"form":form})
 
 
 

@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-<form action="/donatorResgistation/" method="post">
+
+{% block donator %}
+<form  method="post">
 	{% csrf_token %}
 	{{ form }}
 	<input type="submit" value="Submit">
 </form>
-{% block donator %}{% endblock  %}
+{% endblock  %}
