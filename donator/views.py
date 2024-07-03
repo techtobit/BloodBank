@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .froms import DonatorRegistationForm, DonatorProfileUpdateForm
 from django.views.generic.edit import FormView
+from django.contrib.auth import login, logout
 
 # ================== Registation ===============
 # Create your views here.
@@ -23,7 +24,9 @@ class DonatorRegistationView(FormView):
 	success_url='/'
 
 	def form_valid(self, form):
-		form
+		user = form.save()
+		# after reg user login automaticly 
+		login(self.request, user)
 		return super().form_valid(form)
 	
 
