@@ -2,13 +2,19 @@
 <div class='bg-green-600 h-10 flex justify-around items-center align-center'>
 	<div>BloodBank</div>
 	<div class='flex gap-20 justify-between items-center align-center'>
-		<a href={% url "home" %}>Home</a>
+		<a >Home</a>
 		<ul>Story</ul>
 		<ul>Event</ul>
 		<ul>Comminutiy</ul>
 	</div>
 	<div class='flex gap-20 justify-between items-center align-center'>
-		<ul>Login</ul>
-		<a href={% url "singup" %}>SingUp</a>
+		{% if user.is_authenticated %}
+			<a href={% url "profile" %}>profile</a>
+			<a href={% url "logout" %}>logout</a>
+			{% else %}
+			<ul>Login</ul>
+			<a href={% url "singup" %}>SingUp</a>
+		{% endif %}
+
 	</div>
 </div>
