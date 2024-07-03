@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 from .froms import DonatorRegistationForm, DonatorProfileUpdateForm
 from django.views.generic.edit import FormView
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LoginView, LogoutView
 
 # ================== Registation ===============
@@ -32,6 +32,16 @@ class DonatorRegistationView(FormView):
 		return super().form_valid(form)
 
 # ================== LogIN Account ===============
+# def DonatorLogInView(request):
+# 	username=request.POST.get('username')
+# 	password=request.POST.get('password')
+# 	user=authenticate(request, username=username, password=password)
+# 	if user is not None:
+# 		login(request, user)
+# 		return HttpResponseRedirect('profile/')
+# 	else:
+# 		print('error: user id or pass invalied')
+
 class DonatorLogInView(LoginView):
 	template_name ='donatorLogIn.html'
 	def get_success_url(self):
