@@ -1,15 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 from .constant import BLOOD_GROUP
 
-class Donator(models.Model):
-	full_name =models.CharField(max_length=200)
-	age =models.IntegerField(blank=False)
+
+class DonatorDetails(models.Model):
+	user = models.OneToOneField(User, related_name='donator_account', on_delete=models.CASCADE)
+	# first_name =models.CharField(max_length=200, default=' ')
+	# last_name =models.CharField(max_length=200, default=' ')
+	age =models.IntegerField( default=00)
 	blood_group = models.CharField(max_length=15,choices=BLOOD_GROUP)
 	# distric = 
 	# state = 
 	# uninion = 
-	total_donated =models.IntegerField(blank=False)
+	total_donated =models.IntegerField( default=00)
 	phone_number =models.IntegerField(blank=False, unique=True)
 
-	def __str__(self):
-		return f'{self.full_name}-{self.blood_group}'

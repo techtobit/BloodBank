@@ -8,3 +8,11 @@ BLOOD_GROUP = (
 	('O-', 'O- (Negitive)'),
 )
 
+
+# DISTRIC = (
+# 	('CTG', 'Chittagong'),
+# 	('DHK', 'Dhaka'),
+# 	('KHU', 'Khulna'),
+# 	('RAJ', 'Rajsahi'),
+# )
+

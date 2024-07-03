@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Donator
+from .models import DonatorDetails
 # Register your models here.
-# admin.site.register(Donator)
+# admin.site.register(DonatorDetails)
 
-@admin.register(Donator)
+@admin.register(DonatorDetails)
 class DonatorAdmin(admin.ModelAdmin):
-		list_display =['full_name','age','blood_group','total_donated','phone_number']
+		list_display =['age','blood_group','total_donated','phone_number']
