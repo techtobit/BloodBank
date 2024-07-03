@@ -31,13 +31,19 @@ class DonatorRegistationView(FormView):
 		login(self.request, user)
 		return super().form_valid(form)
 
+# ================== LogIN Account ===============
+class DonatorLogInView(LoginView):
+	template_name ='donatorLogIn.html'
+	def get_success_url(self):
+		return reverse_lazy('profile')
+
 
 # ================== LogOut Profile ===============
 class DonatorLogOutView(LogoutView):
 	def get_success_url(self):
 		if self.request.user.is_authenticated:
 			logout(self.request)
-		return reversed_lazy('home')
+		return reverse_lazy('home')
 
 
 # ================== Update Profile ===============
