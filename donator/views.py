@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .froms import DonatorRegistationForm, DonatorProfileUpdateForm
 from django.views.generic.edit import FormView
 from django.contrib.auth import login, logout, authenticate
@@ -72,13 +72,15 @@ class DonatorLogOutView(LogoutView):
 	# ---------Class Base ------------
 class DonatorProfileUpdateView(FormView):
 	template_name='donatorProfileUpdate.html'
-	form_class=DonatorProfileUpdateForm
-	success_url='profile/'
 
-	def form_valid(self, form):
-		user = form.save()
-		# after reg user login automaticly 
-		login(self.request, user)
-		return super().form_valid(form)
+	def get(self, request):
+		form = DonatorProfileUpdateForm(instance=request.user)
+		return render(request, self.template_name, {'form':form})
 
+	def post(self, request):
+		form = DonatorProfileUpdateForm(request.POST,instance=request.user)
+		if form.is_valid():
+			form.save()
+			return redirect('profile')
+		return render(request, self.template_name, {"form":form})
 
