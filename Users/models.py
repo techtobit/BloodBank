@@ -3,35 +3,35 @@ from django.db import models
 from django.contrib.auth.models import  AbstractBaseUser, BaseUserManager, PermissionsMixin 
 from django.contrib.auth import get_user_model
 class CustomUserManager(BaseUserManager):
-    def create_user(self, phone_number, password=None, **extra_fields):
-        if not phone_number:
+    def create_user(self, phoneNumber, password=None, **extra_fields):
+        if not phoneNumber:
             raise ValueError('Phone Number is required')
-        user=self.model(phone_number=phone_number, **extra_fields)
+        user=self.model(phoneNumber=phoneNumber, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
     
-    def create_superuser(self, phone_number, password=None, **extra_fields):
+    def create_superuser(self, phoneNumber, password=None, **extra_fields):
             extra_fields.setdefault('is_staff', True)
             extra_fields.setdefault('is_superuser', True)
-            return self.create_user(phone_number, password, **extra_fields)
+            return self.create_user(phoneNumber, password, **extra_fields)
     
     
 
 class UsersModel(AbstractBaseUser, PermissionsMixin):
-   phone_number= models.CharField(max_length=12, unique=True)
-   password= models.CharField(max_length=50)
-   is_active = models.BooleanField(default=True)
-   is_staff = models.BooleanField(default=True)
-   is_superuser= models.BooleanField(default=True)
-   
-   objects=CustomUserManager()
-   
-   USERNAME_FIELD = 'phone_number'
-   REQUIRED_FIELDS = ['password']
-   
-   def __str__(self):
-      return f"{self.phone_number}"
+    phoneNumber= models.CharField(max_length=11,  unique=True)
+    password= models.CharField(max_length=150)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=True)
+    is_superuser= models.BooleanField(default=True)
+    
+    objects=CustomUserManager()
+    
+    USERNAME_FIELD = 'phoneNumber'
+    REQUIRED_FIELDS = ['password']
+    
+    def __str__(self):
+        return f"{self.phoneNumber}"
 
 
 class UserProfiles(models.Model):
